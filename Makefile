@@ -32,7 +32,7 @@ run-rsp:
 	cd ./loss-detection-app && \
 	docker-compose -f docker-compose.rsp.yml up -d
 
-run-full: run-base run-vap run-rsp
+run-full: run-base run-vap
 
 down:
 	cd ./loss-detection-app && \
@@ -44,7 +44,8 @@ down:
 vas:
 	git clone https://github.com/intel/video-analytics-serving && \
 	cd video-analytics-serving && \
-	./build.sh build=build_gstreamer
+	git checkout v0.3_preview && \
+	./docker/build.sh --framework gstreamer --create-service --build-arg "ENABLE_PAHO_INSTALLATION=true"
 
 rsp:
 	git clone https://github.com/intel/rsp-sw-toolkit-im-suite-mqtt-device-service && \

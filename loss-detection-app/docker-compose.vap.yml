@@ -28,7 +28,7 @@ services:
       - video-analytic
 
   video-analytic:
-    image: video_analytics_serving_gstreamer:latest
+    image: video-analytics-serving-gstreamer:latest
     ports:
       - "8090:8080"
       - "7001:7001"
@@ -40,10 +40,12 @@ services:
       - loss-detection-app_edgex-network
     environment:
       DISPLAY: ${DISPLAY}
+      MODEL_DIR: /models
+      PIPELINE_DIR: /pipelines
     devices:
       - /dev/dri:/dev/dri
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - ./pipelines:/pipelines
+      - ./pipelines_minimal:/pipelines
       - ./models:/models
 
