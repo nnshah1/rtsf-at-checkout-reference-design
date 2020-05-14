@@ -18,6 +18,15 @@ EDGEX_EXIT_EVENT = 'EXITED'
 
 MQTT_BROKER_ADDRESS = MQTT_BROKER_HOST + ":" + str(MQTT_BROKER_PORT)
 
+PRODUCT_LABEL_MAP = {
+    0: "Unknown",
+    1: "Bertolli_Olive_Oil",
+    2: "Canola_Oil",
+    3: "Frosted_Flakes",
+    4: "Ranch_Dressing",
+    5: "Vino_De_Vasaro"
+}
+
 oldFrameDict = {}
 
 def on_connect(client, userdata, message, rc):
@@ -53,12 +62,13 @@ def on_message(client, userdata, message):
             y_max = bounding_box["y_max"]
             y_min = bounding_box["y_min"]
             confidence = detection["confidence"]
-            label_id = detection.get("label_id", None)
+            label_id = detection.get("label_id", 0)
+            label = PRODUCT_LABEL_MAP.get(label_id, "Unknown")
             #For each frame, add the label or increment it in the dict if it is seen
-            if label_id in newFrameDict:
-                newFrameDict[label_id] = newFrameDict[label_id] + 1;
+            if label in newFrameDict:
+                newFrameDict[label] = newFrameDict[label] + 1;
             else:
-                newFrameDict[label_id] = 1
+                newFrameDict[label] = 1
 
         # Enter Exit Logic to be used when tracking is not available
         # This is a simple algorithm that uses counter logic to detect enter exit events
