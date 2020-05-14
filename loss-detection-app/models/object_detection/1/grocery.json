@@ -8,8 +8,8 @@
     "output_postproc":[
         {
             "converter":"DetectionOutput",
-            "labels":["unknown","kcup","Sprite 2L","Koolaid Fruit Punch","Extra Peppermint Gum","Ocelo Sponges","Finish Dishwasher Tablet","Mountain Dew 6 Pack","Mayonnaise","Gatorade","Ketchup","Ruffles","Pringles","Canned Green Beans"],
-            "layer_name":"868"
+            "labels":["product_0", "product_1", "product_2", "product_3", "product_4", "product_5", "product_6"],
+            "layer_name":"507"
         }
     ]
 }

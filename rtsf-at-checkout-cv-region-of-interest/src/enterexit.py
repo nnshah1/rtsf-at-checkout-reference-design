@@ -53,14 +53,12 @@ def on_message(client, userdata, message):
             y_max = bounding_box["y_max"]
             y_min = bounding_box["y_min"]
             confidence = detection["confidence"]
-            label = detection["label"]
-            label_id = detection["label_id"]
-
+            label_id = detection.get("label_id", None)
             #For each frame, add the label or increment it in the dict if it is seen
-            if label in newFrameDict:
-                newFrameDict[label] = newFrameDict[label] + 1;
+            if label_id in newFrameDict:
+                newFrameDict[label_id] = newFrameDict[label_id] + 1;
             else:
-                newFrameDict[label] = 1
+                newFrameDict[label_id] = 1
 
         # Enter Exit Logic to be used when tracking is not available
         # This is a simple algorithm that uses counter logic to detect enter exit events
