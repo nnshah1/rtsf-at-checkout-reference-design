@@ -45,7 +45,7 @@ vas:
 	git clone https://github.com/intel/video-analytics-serving && \
 	cd video-analytics-serving && \
 	git checkout v0.3_preview && \
-	./docker/build.sh --framework gstreamer --create-service --build-arg "ENABLE_PAHO_INSTALLATION=true"
+	./docker/build.sh --framework gstreamer --create-service --build-arg "ENABLE_PAHO_INSTALLATION=true" --base openvisualcloud/xeone3-ubuntu1804-analytics-gst:20.4
 
 rsp:
 	git clone https://github.com/intel/rsp-sw-toolkit-im-suite-mqtt-device-service && \
