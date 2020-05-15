@@ -7,9 +7,9 @@
     ],
     "output_postproc":[
         {
-            "converter":"DetectionOutput",
-            "labels":["product_0", "product_1", "product_2", "product_3", "product_4", "product_5", "product_6"],
-            "layer_name":"507"
+            "converter": "DetectionOutput",
+            "labels": ["Unknown", "Bertolli Olive Oil", "Canola Oil", "Frosted Flakes", "Ranch Dressing", "Vino De Vasaro"],
+            "layer_name": "DetectionOutput"
         }
     ]
 }
