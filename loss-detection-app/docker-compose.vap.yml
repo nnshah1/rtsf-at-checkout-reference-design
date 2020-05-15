@@ -10,6 +10,7 @@ services:
     container_name: cv-region-of-interest
     hostname: cv-region-of-interest
     environment:
+      - DETECTION_DEVICE=CPU
       - MQTT_DESTINATION_HOST=mqtt:1883
       - CAMERA0_ENDPOINT=http://video-analytic:8080/pipelines/object_detection_cpu_render/1
       - CAMERA0_SRC=rtsp://10.54.71.18:8654/simulated_camera_0.sdp
