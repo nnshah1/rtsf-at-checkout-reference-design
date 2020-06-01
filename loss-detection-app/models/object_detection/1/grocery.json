@@ -1,5 +1,5 @@
 {
-    "json_schema_version":1.0,
+    "json_schema_version":"1.0.0",
     "input_preproc":[
         {
             "color_format":"BGR"
@@ -7,9 +7,9 @@
     ],
     "output_postproc":[
         {
-            "converter":"DetectionOutput",
-            "labels":["unknown","kcup","Sprite 2L","Koolaid Fruit Punch","Extra Peppermint Gum","Ocelo Sponges","Finish Dishwasher Tablet","Mountain Dew 6 Pack","Mayonnaise","Gatorade","Ketchup","Ruffles","Pringles","Canned Green Beans"],
-            "layer_name":"868"
+            "converter": "DetectionOutput",
+            "labels": ["Unknown", "Bertolli Olive Oil", "Canola Oil", "Frosted Flakes", "Ranch Dressing", "Vino De Vasaro"],
+            "layer_name": "DetectionOutput"
         }
     ]
 }

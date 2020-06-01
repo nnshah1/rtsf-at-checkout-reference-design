@@ -53,9 +53,8 @@ def on_message(client, userdata, message):
             y_max = bounding_box["y_max"]
             y_min = bounding_box["y_min"]
             confidence = detection["confidence"]
-            label = detection["label"]
-            label_id = detection["label_id"]
-
+            label_id = detection.get("label_id", 0)
+            label = detection.get("label", "Unknown")
             #For each frame, add the label or increment it in the dict if it is seen
             if label in newFrameDict:
                 newFrameDict[label] = newFrameDict[label] + 1;
@@ -160,6 +159,11 @@ def create_pipelines():
         if camSrc == None or roiName == None:
             break # should break out of the loop when no more CAMERA env vars are found
 
+        detectionDevice = os.environ.get("DETECTION_DEVICE")
+        if detectionDevice not in ["CPU", "GPU", "VPU", "FPGA"]:
+            print("DETECTION_DEVICE parameter invalid! Please use one of {CPU, GPU, VPU, FPGA}. Defaulting to CPU")
+            detectionDevice = "CPU"
+
         srcPath, srcType = ('uri', 'uri') if ('rtsp' in camSrc) else ('path', 'string')       
         jsonConfig = {
             'source': {
@@ -173,6 +177,7 @@ def create_pipelines():
             }, 
             'tags': {'roi_name':roiName},
             'parameters' :{
+                "device": detectionDevice,
                 "top":int(camCrops["top"]),
                 "left":int(camCrops["left"]),
                 "right":int(camCrops["right"]),
